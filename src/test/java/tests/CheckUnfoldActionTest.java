@@ -33,19 +33,12 @@ import static org.pageobject.MainPage.*;
     @Test
     public void checkUnfoldingFQATextTest(){
         MainPage mainPage = new MainPage(driver);
-
-        //Переменные
-        String expectedAnswer = expAnswer;
-        String question = questionToOpen;
-
-
         mainPage.openMainPage();
         mainPage.clickCookie();
         mainPage.scrollToFAQsection();
-        mainPage.clickQuestionElement(question);
+        mainPage.clickQuestionElement(questionToOpen);
         String actualAnswer = mainPage.getFaqAnswer();
-
-        Assert.assertEquals("Error", expectedAnswer,actualAnswer);
+        Assert.assertEquals("Error", expAnswer,actualAnswer);
 
 
     }

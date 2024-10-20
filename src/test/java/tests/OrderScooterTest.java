@@ -41,31 +41,25 @@ public class OrderScooterTest extends BaseUITest {
     }
 
     @Test
-    public void orderCheckTest (){
-
+    public void orderCheckViaUpperButtonTest (){
         MainPage mainPage = new MainPage(driver);
-        mainPage.openMainPage();
-        mainPage.clickCookie();
         mainPage.clickRightUpperCornerOrderButton();
-
         ForWhomOrderPage orderPage = new ForWhomOrderPage(driver);
-        orderPage.insertNameData(name);
-        orderPage.insertSurnameData(surname);
-        orderPage.insertAddressData(address);
-        orderPage.insertStationData(station);
-        orderPage.insertPhoneData(phone);
-        orderPage.clickNextButton();
-
-        orderPage.insertDate(date);
-        orderPage.chooseRentPeriod(periodOfTime);
-        orderPage.chooseColor(color);
-        orderPage.insertComment(comment);
-        orderPage.clickOrderButton();
+        orderPage.fillInAndCompleteFirstForm(name, surname, address, station, phone);
+        orderPage.fillInAndCompleteSecondForm(date,periodOfTime,color,comment);
         orderPage.clickConfirmationYesButton();
         Assert.assertTrue("Ошибка: Элемент страницы не найден", orderPage.yourOrderIssuedWindowIsPresent());
+    }
 
+    @Test
+    public void orderCheckViaBottomButtonTest (){
+        MainPage mainPage = new MainPage(driver);
+        mainPage.clickBottomOrderButton();
 
-
-
+        ForWhomOrderPage orderPage = new ForWhomOrderPage(driver);
+        orderPage.fillInAndCompleteFirstForm(name, surname, address, station, phone);
+        orderPage.fillInAndCompleteSecondForm(date,periodOfTime,color,comment);
+        orderPage.clickConfirmationYesButton();
+        Assert.assertTrue("Ошибка: Элемент страницы не найден", orderPage.yourOrderIssuedWindowIsPresent());
     }
 }

@@ -165,6 +165,22 @@ public class ForWhomOrderPage {
         return !driver.findElements(yourOrderIsIssuedWindow).isEmpty();
     }
 
+    public void fillInAndCompleteFirstForm (String name, String surname, String address, String station, String phone ){
+        insertNameData(name);
+        insertSurnameData(surname);
+        insertAddressData(address);
+        insertStationData(station);
+        insertPhoneData(phone);
+        clickNextButton();
+    }
+
+    public void fillInAndCompleteSecondForm(String date,String periodOfTime, String color, String comment){
+        insertDate(date);
+        chooseRentPeriod(periodOfTime);
+        chooseColor(color);
+        insertComment(comment);
+        clickOrderButton();
+    }
 
 }
 

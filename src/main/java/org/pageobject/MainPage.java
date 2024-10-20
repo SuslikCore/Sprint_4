@@ -52,7 +52,7 @@ public class MainPage {
 
 
     //URL сайт
-    public static String MAIN_PAGE_URL = "https://qa-scooter.praktikum-services.ru";
+    public static final String MAIN_PAGE_URL = "https://qa-scooter.praktikum-services.ru";
 
     // Открыть страницу
     public MainPage openMainPage() {
@@ -73,10 +73,20 @@ public class MainPage {
         findAndClick(cookieButton);
     }
 
-    //прокрутка до аккордиона
-    public void scrollToFAQsection (){
-        WebElement element = driver.findElement(sectionFAQ);
+    //Прокрутка до элемента
+    public void scrollToElement (By locator){
+        WebElement element = driver.findElement(locator);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    //скрол до FAQ
+    public void scrollToFAQsection(){
+        scrollToElement (sectionFAQ);
+    }
+
+    //Скрол до нижней кнопки
+    public void scrollToBottomButton(){
+        scrollToElement(bottomOrderButton);
     }
 
     //клик по элементу списка
@@ -103,7 +113,8 @@ public class MainPage {
     }
     //Клик по кнопке заказать низ
     public void clickBottomOrderButton(){
-        findAndClick(rightUpperCornerOrderButton);
+        scrollToBottomButton();
+        findAndClick(bottomOrderButton);
     }
 
 }
